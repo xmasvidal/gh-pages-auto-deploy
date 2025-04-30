@@ -1,0 +1,22 @@
+name: CD workflow
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    cd:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Install
+              uses: npm ci
+
+            - name: Build
+              uses: npm run build
+
+            - name: Deploy
+              uses: npm run deploy
